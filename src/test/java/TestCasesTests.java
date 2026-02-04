@@ -10,7 +10,7 @@ import utils.DriverFactory;
 
 public class TestCasesTests extends TestBase {
     @Description("Verify Test Cases Load")
-    @Test (priority = 1)
+    @Test
     public void TestCaseTabTest() {
         DriverFactory.getDriver().get("https://automationexercise.com/");
         TestCasesPage Cases = new TestCasesPage(DriverFactory.getDriver());

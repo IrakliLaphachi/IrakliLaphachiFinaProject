@@ -46,6 +46,7 @@ public class LoginPage extends BasePage  {
     private By loginEmail = By.cssSelector("[data-qa=\"login-email\"]");
     private By loginPassword = By.cssSelector("[data-qa=\"login-password\"]");
     private By loginBtn = By.cssSelector("[data-qa=\"login-button\"]");
+    private By loginFormError = By.cssSelector("[class=\"login-form\"] p");
 
 
     public LoginPage(WebDriver driver) {
@@ -141,7 +142,7 @@ public class LoginPage extends BasePage  {
     }
 
     public void checkIncorrectLogin(){
-        if (wait.until(ExpectedConditions.textToBePresentInElementLocated(signupForm, "Email Address already exist!"))){
+        if (wait.until(ExpectedConditions.textToBePresentInElementLocated(loginFormError, "Email Address already exist!"))){
             System.out.println("User Exists Text Is Visible");
         }
     }

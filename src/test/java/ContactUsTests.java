@@ -10,7 +10,7 @@ import utils.DriverFactory;
 
 public class ContactUsTests extends TestBase {
     @Description("Verify Contact Us Form")
-    @Test (priority = 1)
+    @Test
     public void SubmitContactUsTest() {
         DriverFactory.getDriver().get("https://automationexercise.com/");
         ContactUsPage Contact = new ContactUsPage(DriverFactory.getDriver());

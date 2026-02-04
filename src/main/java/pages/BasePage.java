@@ -2,6 +2,7 @@ package pages;
 
 import org.openqa.selenium.*;
 
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -19,12 +20,32 @@ public class BasePage {
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
-    protected void click(By locator) {
-        wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
+    public void click(By locator) {
+        try {
+            wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
+        } catch (ElementClickInterceptedException e) {
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript(
+                    "var ads = document.querySelectorAll('.adsbygoogle, .adsbygoogle-noablate');" +
+                            "for(var i=0; i<ads.length; i++) { ads[i].remove(); }"
+            );
+            js.executeScript(
+                    "document.documentElement.style.overflow = 'auto';" +
+                            "document.body.style.overflow = 'auto';" +
+                            "document.documentElement.classList.remove('google-anno-vignette');"
+            );
+            wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
+        }
     }
 
     protected void type(By locator, String text) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).sendKeys(text);
+    }
+
+    protected void hover(By locator){
+        Actions actions = new Actions(driver);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+        actions.moveToElement(driver.findElement(locator));
     }
 
     protected void clear(By locator) {

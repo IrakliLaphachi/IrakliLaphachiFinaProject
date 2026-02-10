@@ -47,6 +47,7 @@ public class LoginPage extends BasePage  {
     private By loginPassword = By.cssSelector("[data-qa=\"login-password\"]");
     private By loginBtn = By.cssSelector("[data-qa=\"login-button\"]");
     private By loginFormError = By.cssSelector("[class=\"login-form\"] p");
+    private By loggedInText = By.className("fa fa-user");
 
 
     public LoginPage(WebDriver driver) {
@@ -61,7 +62,7 @@ public class LoginPage extends BasePage  {
     public void clickLoginTab(){
         click(loginTab);
         if (wait.until(ExpectedConditions.textToBePresentInElementLocated(signupForm, "New User Signup!"))){
-            System.out.println("Sign Up Text Is Visible");
+            System.out.println("Login Tab Sign Up Text Is Visible");
         }
     }
 
@@ -153,9 +154,7 @@ public class LoginPage extends BasePage  {
     }
 
     public void checkLogin(){
-        if (wait.until(ExpectedConditions.textToBePresentInElementLocated(signupForm, "Logged in as irakli"))){
-            System.out.println("User Logged In Text Is Visible");
-        }
+        Assert.assertTrue(driver.findElement(loggedInText).isDisplayed(), "User Logged in Successfully");
     }
 
     public void clickLoginButton(){

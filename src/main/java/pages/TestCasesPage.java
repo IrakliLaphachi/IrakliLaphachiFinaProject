@@ -9,7 +9,7 @@ public class TestCasesPage extends BasePage{
 
     private By pageLogo = By.cssSelector("[class=\"logo pull-left\"] img");
     private By testCasesTab = By.cssSelector("[href=\"/test_cases\"]");
-    private By testCaseTitle = By.cssSelector("h2[class=\"title\"]");
+    private By testCaseTitle = By.cssSelector("[id=\"form\"] [class=\"container\"]");
 
     public TestCasesPage(WebDriver driver) {
         super(driver);
@@ -22,8 +22,6 @@ public class TestCasesPage extends BasePage{
 
     public void clickTestCaseTab(){
         click(testCasesTab);
-        if (wait.until(ExpectedConditions.textToBePresentInElementLocated(testCaseTitle, "Test Cases"))){
-            System.out.println("Test Cases Tab Is Visible");
-        }
+        Assert.assertTrue(driver.findElement(testCaseTitle).isDisplayed(), "Test Cases Page is visible");
     }
 }

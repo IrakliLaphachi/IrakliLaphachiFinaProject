@@ -30,4 +30,22 @@
             </class>
         </classes>
     </test>
+    <test name="Test2">
+        <classes>
+            <class name="APITests">
+                <methods>
+                    <include name="getProductList"/>
+                    <include name="postToProductList"/>
+                    <include name="getBrandsList"/>
+                    <include name="putToBrandsList"/>
+                    <include name="postToSearch"/>
+                    <include name="postEmptySearch"/>
+                    <include name="postValidLogin"/>
+                    <include name="postInvalidLogin"/>
+                    <include name="postEmptyLogin"/>
+                    <include name="getUserDetails"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
 </suite>

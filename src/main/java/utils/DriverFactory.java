@@ -1,14 +1,13 @@
 package utils;
 
-import org.openqa.selenium.UnexpectedAlertBehaviour;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.remote.CapabilityType;
-import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.io.File;
 import java.time.Duration;
+import java.util.HashMap;
+import java.util.Map;
 
 public class DriverFactory {
 
@@ -20,7 +19,21 @@ public class DriverFactory {
 
     public static void initDriver() {
 
-        driver = new ChromeDriver();
+        Map<String, Object> prefs = new HashMap<>();
+        prefs.put("profile.managed_default_content_settings.ads", 2);
+
+        ChromeOptions options = new ChromeOptions();
+
+        options.addExtensions(new File("src/main/resources/uBlockOriginLite.crx"));
+        options.setExperimentalOption("prefs", prefs);
+
+        options.addArguments("--disable-infobars");
+        options.addArguments("--disable-notifications");
+        options.addArguments("--disable-popup-blocking");
+        options.addArguments("--disable-features=InterestFeedContentSuggestions");
+
+        driver = new ChromeDriver(options);
+
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }

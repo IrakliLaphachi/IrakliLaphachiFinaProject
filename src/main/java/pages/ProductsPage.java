@@ -14,7 +14,7 @@ public class ProductsPage extends BasePage{
     private By productInfo = By.cssSelector("[class=\"product-information\"]");
     private By searchBar = By.id("search_product");
     private By searchBtn = By.id("submit_search");
-    private By productCardText = By.cssSelector("[class=\"col-sm-4\"]:nth-child(1) p");
+    private By productCardText = By.cssSelector("[class=\"col-sm-4\"]:nth-child(1) [class=\"productinfo text-center\"] p");
     private By productCard1 = By.cssSelector("[class=\"col-sm-4\"]:nth-child(1)");
     private By productAdd1 = By.cssSelector("[data-product-id=\"1\"]");
     private By continueShopping = By.cssSelector("[data-dismiss=\"modal\"]");

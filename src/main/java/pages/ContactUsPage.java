@@ -42,7 +42,7 @@ public class ContactUsPage extends BasePage  {
         type(contactEmail, "testirakli@gmail.com");
         type(contactSubject, "Test Contact Us Subject");
         type(contactMessage, "Test Contact Us Message");
-        uploadFile(contactFile,"src/main/resources/files/PlaceholderImage.jpg");
+        uploadFile(contactFile,"src/test/resources/files/PlaceholderImage.jpg");
     }
 
     public void clickContactSubmit(){

@@ -11,10 +11,10 @@ import java.util.Map;
 
 public class DriverFactory {
 
-    private static WebDriver driver;
+    private static final ThreadLocal<WebDriver> ThreadDriver = new ThreadLocal<>();
 
     public static WebDriver getDriver() {
-        return driver;
+        return ThreadDriver.get();
     }
 
     public static void initDriver() {
@@ -24,7 +24,7 @@ public class DriverFactory {
 
         ChromeOptions options = new ChromeOptions();
 
-        options.addExtensions(new File("src/main/resources/uBlockOriginLite.crx"));
+        options.addExtensions(new File("src/test/resources/uBlockOriginLite.crx"));
         options.setExperimentalOption("prefs", prefs);
 
         options.addArguments("--disable-infobars");
@@ -32,16 +32,18 @@ public class DriverFactory {
         options.addArguments("--disable-popup-blocking");
         options.addArguments("--disable-features=InterestFeedContentSuggestions");
 
-        driver = new ChromeDriver(options);
-
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        WebDriver driver = new ChromeDriver(options);
+        ThreadDriver.set(driver);
+        getDriver().manage().window().maximize();
+        getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
     public static void quitDriver() {
-        if (driver != null) {
-            driver.quit();
-            driver = null;
+        if (getDriver() != null) {
+
+            getDriver().quit();
+
+            ThreadDriver.remove();
         }
     }
 }

@@ -1,6 +1,6 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="UITestsSuite" parallel="methods" thread-count="1" >
-    <test preserve-order="true" name="Test1">
+<suite name="TestsSuite" parallel="methods" thread-count="1" >
+    <test preserve-order="true" name="UITest">
         <classes>
             <class name="UserTests">
                 <methods>
@@ -30,7 +30,7 @@
             </class>
         </classes>
     </test>
-    <test name="Test2">
+    <test name="APITests">
         <classes>
             <class name="APITests">
                 <methods>

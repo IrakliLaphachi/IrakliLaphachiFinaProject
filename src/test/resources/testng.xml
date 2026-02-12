@@ -1,5 +1,5 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="TestsSuite" parallel="methods" thread-count="1" >
+<suite name="TestsSuite" parallel="methods" thread-count="4" >
     <test preserve-order="true" name="UITest">
         <classes>
             <class name="UserTests">

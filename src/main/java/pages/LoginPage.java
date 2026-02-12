@@ -132,7 +132,7 @@ public class LoginPage extends BasePage  {
 
     public void clickLogoutBtn(){
         click(logoutBtn);
-        if (wait.until(ExpectedConditions.textToBePresentInElementLocated(signupForm, "Login to your account"))){
+        if (wait.until(ExpectedConditions.textToBePresentInElementLocated(signupPageForm, "Login to your account"))){
             System.out.println("Login Page Is Visible");
         }
     }

@@ -7,4 +7,4 @@ Test Cases Automated By: Irakli Laphachi(ირაკლი ლაფაჩი)
 
 რეპორტის გენერაციისთვის:
 1. დაველოდოთ ტესტების დასრულებას
-2. კონსოლში გავუშვათ ბრძანება: allure serve
+2. კონსოლში გავუშვათ ბრძანება: allure serve target/allure-results
